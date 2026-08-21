@@ -1,0 +1,172 @@
+{
+  "global": {
+    "samples": 6115,
+    "accuracy": 0.9825020441537203,
+    "macro_f1": 0.9772153303515422,
+    "weighted_f1": 0.9824239096395246,
+    "classification_report": {
+      "early_blight": {
+        "precision": 0.978494623655914,
+        "recall": 0.939906103286385,
+        "f1-score": 0.9588122605363985,
+        "support": 1065.0
+      },
+      "healthy": {
+        "precision": 0.991576819407008,
+        "recall": 0.9925801011804385,
+        "f1-score": 0.9920782066408225,
+        "support": 2965.0
+      },
+      "late_blight": {
+        "precision": 0.9717514124293786,
+        "recall": 0.9899280575539569,
+        "f1-score": 0.9807555238774056,
+        "support": 2085.0
+      },
+      "accuracy": 0.9825020441537203,
+      "macro avg": {
+        "precision": 0.9806076184974336,
+        "recall": 0.97413808734026,
+        "f1-score": 0.9772153303515422,
+        "support": 6115.0
+      },
+      "weighted avg": {
+        "precision": 0.9825386326493183,
+        "recall": 0.9825020441537203,
+        "f1-score": 0.9824239096395246,
+        "support": 6115.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        1001,
+        18,
+        46
+      ],
+      [
+        8,
+        2943,
+        14
+      ],
+      [
+        14,
+        7,
+        2064
+      ]
+    ]
+  },
+  "by_source": {
+    "campis": {
+      "samples": 346,
+      "accuracy": 0.9075144508670521,
+      "macro_f1": 0.8988104579039211,
+      "weighted_f1": 0.9087261533120178,
+      "classification_report": {
+        "early_blight": {
+          "precision": 0.9264705882352942,
+          "recall": 0.8689655172413793,
+          "f1-score": 0.896797153024911,
+          "support": 145.0
+        },
+        "healthy": {
+          "precision": 0.7804878048780488,
+          "recall": 0.9142857142857143,
+          "f1-score": 0.8421052631578947,
+          "support": 70.0
+        },
+        "late_blight": {
+          "precision": 0.96875,
+          "recall": 0.9465648854961832,
+          "f1-score": 0.9575289575289575,
+          "support": 131.0
+        },
+        "accuracy": 0.9075144508670521,
+        "macro avg": {
+          "precision": 0.8919027977044477,
+          "recall": 0.9099387056744256,
+          "f1-score": 0.8988104579039211,
+          "support": 346.0
+        },
+        "weighted avg": {
+          "precision": 0.9129440220681534,
+          "recall": 0.9075144508670521,
+          "f1-score": 0.9087261533120178,
+          "support": 346.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          126,
+          17,
+          2
+        ],
+        [
+          4,
+          64,
+          2
+        ],
+        [
+          6,
+          1,
+          124
+        ]
+      ]
+    },
+    "irish": {
+      "samples": 5769,
+      "accuracy": 0.9869994799791991,
+      "macro_f1": 0.9822519783386946,
+      "weighted_f1": 0.9869706660590876,
+      "classification_report": {
+        "early_blight": {
+          "precision": 0.9864712514092446,
+          "recall": 0.9510869565217391,
+          "f1-score": 0.9684560044272275,
+          "support": 920.0
+        },
+        "healthy": {
+          "precision": 0.9975744975744976,
+          "recall": 0.9944732297063903,
+          "f1-score": 0.9960214495761979,
+          "support": 2895.0
+        },
+        "late_blight": {
+          "precision": 0.9719438877755511,
+          "recall": 0.9928352098259979,
+          "f1-score": 0.9822784810126582,
+          "support": 1954.0
+        },
+        "accuracy": 0.9869994799791991,
+        "macro avg": {
+          "precision": 0.9853298789197643,
+          "recall": 0.9794651320180424,
+          "f1-score": 0.9822519783386946,
+          "support": 5769.0
+        },
+        "weighted avg": {
+          "precision": 0.987122565173878,
+          "recall": 0.9869994799791991,
+          "f1-score": 0.9869706660590876,
+          "support": 5769.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          875,
+          1,
+          44
+        ],
+        [
+          4,
+          2879,
+          12
+        ],
+        [
+          8,
+          6,
+          1940
+        ]
+      ]
+    }
+  }
+}

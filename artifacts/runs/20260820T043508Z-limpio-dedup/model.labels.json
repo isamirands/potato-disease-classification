@@ -1,0 +1,8 @@
+{
+  "labels": [
+    "early_blight",
+    "healthy",
+    "late_blight"
+  ],
+  "schema_version": 1
+}

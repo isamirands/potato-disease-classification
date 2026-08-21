@@ -1,0 +1,76 @@
+{
+  "paths": {
+    "project_root": "C:\\CAMPIS",
+    "artifacts_dir": "C:\\CAMPIS\\artifacts",
+    "manifest_path": "C:\\CAMPIS\\artifacts\\manifests\\dataset.csv"
+  },
+  "data": {
+    "classes": [
+      "early_blight",
+      "healthy",
+      "late_blight"
+    ],
+    "extensions": [
+      ".jpg",
+      ".jpeg",
+      ".png",
+      ".bmp"
+    ],
+    "seed": 42,
+    "ratios": {
+      "train": 0.7,
+      "val": 0.15,
+      "test": 0.15
+    },
+    "verify_images": true,
+    "balance_strategy": "source_class",
+    "samples_per_source_class": 2000,
+    "sources": [
+      {
+        "name": "campis",
+        "path": "C:\\CAMPIS\\datasets\\dataset_campis",
+        "camera_type": "professional"
+      },
+      {
+        "name": "irish",
+        "path": "C:\\CAMPIS\\datasets\\dataset_irish",
+        "camera_type": "cellphone"
+      }
+    ],
+    "hash_duplicates": true,
+    "group_campis_by_minutes": 5,
+    "group_sequence_gap": 8,
+    "max_images_per_source_class": 0
+  },
+  "model": {
+    "image_size": [
+      224,
+      224
+    ],
+    "dense_units": [
+      256,
+      128
+    ],
+    "dropout": 0.3,
+    "weights": "imagenet",
+    "fine_tune_fraction": 0.3,
+    "tflite_optimize": true,
+    "crop_to_square": true
+  },
+  "training": {
+    "batch_size": 32,
+    "head_epochs": 10,
+    "fine_tune_epochs": 10,
+    "head_lr": 0.001,
+    "fine_tune_lr": 1e-05,
+    "patience": 5,
+    "num_workers": 4
+  },
+  "augmentation": {
+    "flip": true,
+    "rotation": 0.04,
+    "translation": 0.1,
+    "zoom": 0.1,
+    "contrast": 0.2
+  }
+}

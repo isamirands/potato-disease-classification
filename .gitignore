@@ -7,8 +7,17 @@ __pycache__/
 # Los datasets son datos crudos locales y no deben versionarse.
 datasets/
 
-# Resultados reproducibles generados por el pipeline.
-artifacts/
+# Registros de instalacion locales.
+.pip-install*.log
+
+# Resultados generados por el pipeline. Se versionan las metricas y figuras
+# de cada corrida, que son pequenas y son lo que se cita; quedan fuera los
+# pesos y el manifest, que son grandes y se regeneran con `prepare`.
+artifacts/manifests/
+artifacts/smoke/
+artifacts/runs/*/*.keras
+artifacts/runs/*/*.tflite
+artifacts/runs/*/manifest.csv
 
 # Archivos del editor y del sistema.
 .vscode/

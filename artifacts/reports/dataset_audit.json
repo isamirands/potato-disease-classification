@@ -1,0 +1,45 @@
+{
+  "total_valid_images": 40778,
+  "total_size_bytes": 7316724154,
+  "by_source": {
+    "campis": 2310,
+    "irish": 38468
+  },
+  "source_percentages": {
+    "campis": 5.6648,
+    "irish": 94.3352
+  },
+  "by_camera_type": {
+    "cellphone": 38468,
+    "professional": 2310
+  },
+  "by_class": {
+    "early_blight": 7103,
+    "healthy": 19770,
+    "late_blight": 13905
+  },
+  "by_source_and_class": {
+    "campis|early_blight": 966,
+    "campis|healthy": 468,
+    "campis|late_blight": 876,
+    "irish|early_blight": 6137,
+    "irish|healthy": 19302,
+    "irish|late_blight": 13029
+  },
+  "extensions": {
+    ".jpg": 40778
+  },
+  "most_common_dimensions": [],
+  "dimensions_available": false,
+  "effective_exif_orientations": {
+    "1": 40778
+  },
+  "invalid_images": [],
+  "exact_duplicate_group_count": 0,
+  "exact_duplicate_file_count": 0,
+  "exact_duplicate_examples": [],
+  "conflicting_label_hashes": {},
+  "hashes_calculated": false,
+  "tensorflow_decode_checked": false,
+  "tensorflow_decode_failures": []
+}
