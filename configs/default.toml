@@ -1,0 +1,63 @@
+# Configuracion reproducible para el entrenamiento completo con ambos dominios.
+
+[paths]
+project_root = ".."
+artifacts_dir = "artifacts"
+manifest_path = "artifacts/manifests/dataset.csv"
+
+[data]
+classes = ["early_blight", "healthy", "late_blight"]
+extensions = [".jpg", ".jpeg", ".png", ".bmp"]
+seed = 42
+verify_images = true
+balance_strategy = "source_class"
+samples_per_source_class = 2000
+hash_duplicates = true
+group_campis_by_minutes = 5
+# Ráfagas con contador de camara (IMG_0051, IMG_0052...): salto maximo
+# entre numeros consecutivos para considerarlos la misma sesion.
+group_sequence_gap = 8
+max_images_per_source_class = 0
+
+[data.ratios]
+train = 0.70
+val = 0.15
+test = 0.15
+
+[[data.sources]]
+name = "campis"
+path = "datasets/dataset_campis"
+camera_type = "professional"
+
+[[data.sources]]
+name = "irish"
+path = "datasets/dataset_irish"
+camera_type = "cellphone"
+
+[model]
+image_size = [224, 224]
+dense_units = [256, 128]
+dropout = 0.30
+weights = "imagenet"
+fine_tune_fraction = 0.30
+tflite_optimize = true
+# Recorta el cuadrado central antes de redimensionar: iguala la geometria
+# de CAMPIS (1:1) e Irish (4:3) en lugar de deformar solo a una fuente.
+crop_to_square = true
+
+[training]
+batch_size = 32
+head_epochs = 10
+fine_tune_epochs = 10
+head_lr = 0.001
+fine_tune_lr = 0.00001
+patience = 5
+num_workers = 4
+
+[augmentation]
+flip = true
+# RandomRotation usa fraccion de una vuelta: 0.04 equivale a unos 14.4 grados.
+rotation = 0.04
+translation = 0.10
+zoom = 0.10
+contrast = 0.20

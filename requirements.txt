@@ -1,0 +1,7 @@
+# Versiones verificadas en el entorno local de este proyecto (Python 3.13).
+tensorflow==2.21.0
+numpy==2.5.2
+Pillow==12.3.0
+scikit-learn==1.9.0
+matplotlib==3.11.1
+

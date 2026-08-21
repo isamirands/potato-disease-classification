@@ -1,0 +1,58 @@
+# Ejecucion minima para validar el pipeline sin descargar pesos de ImageNet.
+
+[paths]
+project_root = ".."
+artifacts_dir = "artifacts/smoke"
+manifest_path = "artifacts/smoke/manifest.csv"
+
+[data]
+classes = ["early_blight", "healthy", "late_blight"]
+extensions = [".jpg", ".jpeg", ".png", ".bmp"]
+seed = 42
+verify_images = false
+balance_strategy = "source_class"
+samples_per_source_class = 2
+hash_duplicates = false
+group_campis_by_minutes = 0
+group_sequence_gap = 0
+max_images_per_source_class = 12
+
+[data.ratios]
+train = 0.70
+val = 0.15
+test = 0.15
+
+[[data.sources]]
+name = "campis"
+path = "datasets/dataset_campis"
+camera_type = "professional"
+
+[[data.sources]]
+name = "irish"
+path = "datasets/dataset_irish"
+camera_type = "cellphone"
+
+[model]
+image_size = [96, 96]
+dense_units = [32]
+dropout = 0.0
+weights = ""
+fine_tune_fraction = 0.0
+tflite_optimize = false
+crop_to_square = true
+
+[training]
+batch_size = 4
+head_epochs = 1
+fine_tune_epochs = 0
+head_lr = 0.001
+fine_tune_lr = 0.00001
+patience = 0
+num_workers = 1
+
+[augmentation]
+flip = false
+rotation = 0.0
+translation = 0.0
+zoom = 0.0
+contrast = 0.0

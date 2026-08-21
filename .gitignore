@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+
+# Los datasets son datos crudos locales y no deben versionarse.
+datasets/
+
+# Resultados reproducibles generados por el pipeline.
+artifacts/
+
+# Archivos del editor y del sistema.
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
