@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" width="900" height="400" role="img" aria-label="Las dos camaras entran por separado, el manifest las reparte en train, val y test manteniendo cada sesion de fotos entera, y las tres particiones llegan al mismo modelo en tres papeles distintos.">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#E7EDE4"/>
+    </marker>
+    <marker id="arc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#D6A05E"/>
+    </marker>
+    <marker id="ari" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#74B6C2"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="900" height="400" fill="#0D1117"/>
+
+  <g font-family="ui-monospace, 'Cascadia Mono', Menlo, monospace" font-size="10.5" letter-spacing="1.2" fill="#98A69B">
+    <text x="16" y="24">FUENTES</text>
+    <text x="226" y="24">PARTICION</text>
+    <text x="444" y="24">POR SPLIT</text>
+    <text x="668" y="24">MODELO</text>
+  </g>
+
+  <rect x="16" y="120" width="150" height="52" rx="3" fill="#2C2418" stroke="#D6A05E"/>
+  <text x="30" y="142" font-family="system-ui, sans-serif" font-size="12.5" font-weight="600" fill="#D6A05E">CAMPIS</text>
+  <text x="30" y="160" font-family="ui-monospace, monospace" font-size="11.5" fill="#D6A05E">2.310 · profesional</text>
+
+  <rect x="16" y="188" width="150" height="92" rx="3" fill="#16272B" stroke="#74B6C2"/>
+  <text x="30" y="222" font-family="system-ui, sans-serif" font-size="12.5" font-weight="600" fill="#74B6C2">IRISH</text>
+  <text x="30" y="240" font-family="ui-monospace, monospace" font-size="11.5" fill="#74B6C2">38.468 · celular</text>
+  <text x="30" y="258" font-family="ui-monospace, monospace" font-size="11" fill="#74B6C2" opacity="0.85">94,3 % del corpus</text>
+
+  <line x1="166" y1="146" x2="220" y2="160" stroke="#D6A05E" stroke-width="1.5" marker-end="url(#arc)"/>
+  <line x1="166" y1="234" x2="220" y2="222" stroke="#74B6C2" stroke-width="1.5" marker-end="url(#ari)"/>
+
+  <rect x="226" y="44" width="158" height="312" rx="3" fill="none" stroke="#3B453C"/>
+  <text x="242" y="76" font-family="ui-monospace, monospace" font-size="12.5" font-weight="500" fill="#E7EDE4">manifest.csv</text>
+  <line x1="242" y1="90" x2="368" y2="90" stroke="#3B453C"/>
+  <g font-family="system-ui, sans-serif" font-size="11.5" fill="#C4CFC1">
+    <text x="242" y="114">Reparte 70 / 15 / 15</text>
+    <text x="242" y="132">estratificado por</text>
+    <text x="242" y="150">fuente y clase.</text>
+    <text x="242" y="192">Una sesion de fotos</text>
+    <text x="242" y="210">cae entera en un solo</text>
+    <text x="242" y="228">split, nunca partida.</text>
+    <text x="242" y="270">Los duplicados exactos</text>
+    <text x="242" y="288">viajan juntos, unidos</text>
+    <text x="242" y="306">por su SHA-256.</text>
+  </g>
+  <text x="242" y="338" font-family="ui-monospace, monospace" font-size="10.5" fill="#D6A05E">244 sesiones en CAMPIS</text>
+
+  <line x1="384" y1="168" x2="438" y2="110" stroke="#E7EDE4" stroke-width="1.5" marker-end="url(#ar)"/>
+  <line x1="384" y1="200" x2="438" y2="200" stroke="#E7EDE4" stroke-width="1.5" marker-end="url(#ar)"/>
+  <line x1="384" y1="232" x2="438" y2="292" stroke="#E7EDE4" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="444" y="66" width="180" height="88" rx="3" fill="none" stroke="#3B453C"/>
+  <text x="458" y="88" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#E7EDE4">Train · 70 %</text>
+  <g font-family="ui-monospace, monospace" font-size="10.5" fill="#98A69B">
+    <text x="458" y="108">balance por epoca</text>
+    <text x="458" y="124">2.000 x 6 = 12.000</text>
+    <text x="458" y="140">375 pasos · 32/lote</text>
+  </g>
+
+  <rect x="444" y="176" width="180" height="88" rx="3" fill="none" stroke="#3B453C"/>
+  <text x="458" y="198" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#E7EDE4">Val · 15 %</text>
+  <g font-family="ui-monospace, monospace" font-size="10.5" fill="#98A69B">
+    <text x="458" y="218">6.116 imagenes</text>
+    <text x="458" y="234">distribucion natural</text>
+    <text x="458" y="250">val_balanced_loss</text>
+  </g>
+
+  <rect x="444" y="286" width="180" height="88" rx="3" fill="none" stroke="#3B453C"/>
+  <text x="458" y="308" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#E7EDE4">Test · 15 %</text>
+  <g font-family="ui-monospace, monospace" font-size="10.5" fill="#98A69B">
+    <text x="458" y="328">6.115 imagenes</text>
+    <text x="458" y="344">se abre una sola vez,</text>
+    <text x="458" y="360">al final</text>
+  </g>
+
+  <line x1="624" y1="110" x2="662" y2="110" stroke="#E7EDE4" stroke-width="1.5" marker-end="url(#ar)"/>
+  <line x1="624" y1="220" x2="662" y2="220" stroke="#E7EDE4" stroke-width="1.5" marker-end="url(#ar)"/>
+  <line x1="624" y1="330" x2="662" y2="330" stroke="#E7EDE4" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <rect x="668" y="44" width="216" height="330" rx="3" fill="#1D2C22" stroke="#74C48C"/>
+  <text x="684" y="76" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#74C48C">MobileNetV3Small</text>
+  <line x1="684" y1="90" x2="868" y2="90" stroke="#74C48C" stroke-opacity="0.45"/>
+  <g font-family="system-ui, sans-serif" font-size="11.5" fill="#C4CFC1">
+    <text x="684" y="114">Lo entrena: cabeza</text>
+    <text x="684" y="132">congelada, luego el</text>
+    <text x="684" y="150">30 % final del backbone.</text>
+    <text x="684" y="224">Elige su checkpoint,</text>
+    <text x="684" y="242">promediando las dos</text>
+    <text x="684" y="260">camaras por igual.</text>
+    <text x="684" y="334">Lo mide, reportando</text>
+    <text x="684" y="352">cada camara aparte.</text>
+  </g>
+</svg>

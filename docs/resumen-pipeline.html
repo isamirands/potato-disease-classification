@@ -1,0 +1,730 @@
+<title>Pipeline CAMPIS Vision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --ground: #F6F8F4;
+    --surface: #FFFFFF;
+    --surface-sunk: #EDF1EA;
+    --ink: #16201A;
+    --ink-soft: #38473C;
+    --muted: #5D6B61;
+    --line: #DCE3D8;
+    --line-strong: #C3CEBD;
+    --accent: #2E6B44;
+    --accent-soft: #E4EFE6;
+    --campis: #9A5F16;
+    --campis-soft: #F5EADA;
+    --irish: #2A6674;
+    --irish-soft: #E1EDEF;
+
+    --step: clamp(1rem, 0.92rem + 0.4vw, 1.075rem);
+    --measure: 68ch;
+
+    --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+    --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #111612;
+      --surface: #191F1A;
+      --surface-sunk: #141A15;
+      --ink: #E7EDE4;
+      --ink-soft: #C4CFC1;
+      --muted: #98A69B;
+      --line: #2A322B;
+      --line-strong: #3B453C;
+      --accent: #74C48C;
+      --accent-soft: #1D2C22;
+      --campis: #D6A05E;
+      --campis-soft: #2C2418;
+      --irish: #74B6C2;
+      --irish-soft: #16272B;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #111612;
+    --surface: #191F1A;
+    --surface-sunk: #141A15;
+    --ink: #E7EDE4;
+    --ink-soft: #C4CFC1;
+    --muted: #98A69B;
+    --line: #2A322B;
+    --line-strong: #3B453C;
+    --accent: #74C48C;
+    --accent-soft: #1D2C22;
+    --campis: #D6A05E;
+    --campis-soft: #2C2418;
+    --irish: #74B6C2;
+    --irish-soft: #16272B;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--step);
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.15rem, 4vw, 2.5rem) 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .prose { max-width: var(--measure); }
+
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 600; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(2.3rem, 1.6rem + 3vw, 3.4rem); line-height: 1.08; letter-spacing: -0.015em; }
+  h2 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 1.95rem); line-height: 1.18; }
+  h3 { font-size: 1.14rem; line-height: 1.3; }
+  p { margin: 0; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  code, kbd { font-family: var(--font-mono); font-size: 0.88em; }
+  .prose code, li code, td code, dd code {
+    background: var(--surface-sunk);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 0.08em 0.32em;
+  }
+
+  /* ---------- header ---------- */
+
+  header { display: flex; flex-direction: column; gap: 1.5rem; }
+  header .lede {
+    font-family: var(--font-display);
+    font-size: clamp(1.12rem, 1rem + 0.6vw, 1.35rem);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .facts div { background: var(--surface); padding: 0.95rem 1.1rem; display: flex; flex-direction: column; gap: 0.15rem; }
+  .facts dt, .facts .k {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .facts .v { font-family: var(--font-display); font-size: 1.45rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .facts .v small { font-family: var(--font-body); font-size: 0.72rem; color: var(--muted); letter-spacing: 0; }
+
+  /* ---------- sections ---------- */
+
+  section { display: flex; flex-direction: column; gap: 1.5rem; }
+  .section-head { display: flex; flex-direction: column; gap: 0.6rem; max-width: var(--measure); }
+
+  /* ---------- figure ---------- */
+
+  figure { margin: 0; display: flex; flex-direction: column; gap: 1rem; }
+  .figure-frame {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: clamp(1rem, 3vw, 1.75rem);
+    overflow-x: auto;
+  }
+  .figure-frame svg { display: block; width: 100%; min-width: 660px; height: auto; color: var(--ink); fill: currentColor; }
+  figcaption { font-size: 0.92rem; color: var(--muted); max-width: var(--measure); }
+
+  /* diagram */
+  .d-campis { fill: var(--campis); }
+  .d-irish { fill: var(--irish); }
+  .d-accent { fill: var(--accent); }
+  .d-box-campis { fill: var(--campis-soft); stroke: var(--campis); }
+  .d-box-irish { fill: var(--irish-soft); stroke: var(--irish); }
+  .d-box-accent { fill: var(--accent-soft); stroke: var(--accent); stroke-opacity: 0.55; }
+  .d-box { fill: none; stroke: currentColor; stroke-opacity: 0.35; }
+  .d-rule { stroke: currentColor; stroke-opacity: 0.2; }
+  .d-rule-accent { stroke: var(--accent); stroke-opacity: 0.3; }
+  .d-arrow { stroke: currentColor; stroke-width: 1.5; }
+  .d-arrow-campis { stroke: var(--campis); stroke-width: 1.5; }
+  .d-arrow-irish { stroke: var(--irish); stroke-width: 1.5; }
+  .d-eyebrow { opacity: 0.55; }
+  .d-soft { opacity: 0.85; }
+  .d-softer { opacity: 0.72; }
+
+  /* ---------- corpus table ---------- */
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.94rem; }
+  th, td { padding: 0.7rem 1rem; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; }
+  thead th {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  tbody td { font-variant-numeric: tabular-nums; }
+  tbody tr:last-child td { border-bottom: none; }
+  tfoot td { font-weight: 600; font-variant-numeric: tabular-nums; background: var(--surface-sunk); border-bottom: none; }
+  .dom { display: inline-flex; align-items: baseline; gap: 0.5rem; }
+  .dom b { font-weight: 600; }
+  .dom span { font-size: 0.78rem; color: var(--muted); }
+  .swatch { width: 9px; height: 9px; border-radius: 2px; display: inline-block; flex: none; align-self: center; }
+  .sw-campis { background: var(--campis); }
+  .sw-irish { background: var(--irish); }
+
+  /* ---------- stages ---------- */
+
+  .stages { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .stage { background: var(--surface); display: grid; grid-template-columns: 3.25rem 1fr; gap: 0 1.25rem; padding: 1.4rem clamp(1rem, 3vw, 1.6rem); }
+  .stage-n {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--accent);
+    padding-top: 0.2rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .stage-body { display: flex; flex-direction: column; gap: 0.55rem; min-width: 0; }
+  .stage h3 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem; }
+  .stage h3 .cmd { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 400; color: var(--muted); }
+  .stage p { max-width: 62ch; }
+  .io {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.6rem;
+    align-items: center;
+  }
+  .io b { color: var(--ink-soft); font-weight: 500; }
+  .fixed {
+    align-self: flex-start;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid var(--line-strong);
+    border-radius: 3px;
+    padding: 0.16rem 0.5rem;
+  }
+
+  /* ---------- run block ---------- */
+
+  pre {
+    margin: 0;
+    background: var(--surface-sunk);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.15rem 1.25rem;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.83rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+  pre .c { color: var(--muted); }
+  pre .p { color: var(--accent); }
+
+  /* ---------- notes ---------- */
+
+  .notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .note { background: var(--surface); padding: 1.25rem 1.35rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .note h3 { font-size: 1rem; }
+  .note p { font-size: 0.93rem; color: var(--ink-soft); }
+
+  dl.outputs { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.55rem 1.4rem; align-items: baseline; }
+  dl.outputs dt { font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink); white-space: nowrap; }
+  dl.outputs dd { margin: 0; font-size: 0.94rem; color: var(--ink-soft); }
+
+  footer { border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: 0.88rem; color: var(--muted); max-width: var(--measure); }
+
+  a { color: var(--accent); text-underline-offset: 0.18em; }
+  a:focus-visible, :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  @media (max-width: 620px) {
+    .stage { grid-template-columns: 1fr; gap: 0.6rem; }
+    .stage-n { padding-top: 0; }
+    dl.outputs { grid-template-columns: 1fr; gap: 0.2rem; }
+    dl.outputs dd { margin-bottom: 0.7rem; }
+  }
+</style>
+
+<div class="page">
+
+  <header>
+    <p class="eyebrow">CAMPIS Vision · clasificación de hojas de papa</p>
+    <h1>Pipeline CAMPIS Vision</h1>
+    <p class="lede">
+      Dos cámaras muy distintas fotografiaron las mismas tres enfermedades, y una aportó
+      veinticinco veces más imágenes que la otra. Todo el diseño del pipeline existe para que
+      ese desbalance no decida el resultado.
+    </p>
+
+    <div class="facts">
+      <div><span class="k">Imágenes</span><span class="v">61.021</span></div>
+      <div><span class="k">Fuentes</span><span class="v">2 <small>cámaras</small></span></div>
+      <div><span class="k">Clases</span><span class="v">3</span></div>
+      <div><span class="k">Modelo</span><span class="v">MobileNetV3<small>Small</small></span></div>
+      <div><span class="k">Entrada</span><span class="v">224² <small>px RGB</small></span></div>
+      <div><span class="k">Salidas</span><span class="v">Keras <small>+ TFLite</small></span></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">El recorrido completo</p>
+      <h2>Cómo viaja una foto desde el disco hasta una predicción</h2>
+      <p class="prose">
+        Las imágenes originales nunca se mueven ni se copian. Lo único que el pipeline escribe
+        sobre los datos es un CSV que dice a qué partición pertenece cada archivo. Todo lo demás
+        ocurre en memoria.
+      </p>
+    </div>
+
+    <figure>
+      <div class="figure-frame">
+        <svg viewBox="0 0 900 400" role="img"
+             aria-label="Las dos cámaras entran por separado, el manifest las reparte en train, val y test manteniendo cada sesión de fotos entera, y las tres particiones llegan al mismo modelo en tres papeles distintos: entrenarlo, elegir su checkpoint y medirlo por cámara.">
+          <defs>
+            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 1 L 9 5 L 0 9 z" fill="currentColor"></path>
+            </marker>
+            <marker id="ar-campis" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 1 L 9 5 L 0 9 z" class="d-campis"></path>
+            </marker>
+            <marker id="ar-irish" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 1 L 9 5 L 0 9 z" class="d-irish"></path>
+            </marker>
+          </defs>
+
+          <g font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="1.2" class="d-eyebrow">
+            <text x="16" y="24">FUENTES</text>
+            <text x="226" y="24">PARTICIÓN</text>
+            <text x="444" y="24">POR SPLIT</text>
+            <text x="668" y="24">MODELO</text>
+          </g>
+
+          <!-- fuentes -->
+          <rect x="16" y="120" width="150" height="52" rx="3" class="d-box-campis"></rect>
+          <text x="30" y="142" font-family="IBM Plex Sans, sans-serif" font-size="12.5" font-weight="600" class="d-campis">CAMPIS</text>
+          <text x="30" y="160" font-family="IBM Plex Mono, monospace" font-size="11.5" class="d-campis">2.312 · profesional</text>
+
+          <rect x="16" y="188" width="150" height="92" rx="3" class="d-box-irish"></rect>
+          <text x="30" y="222" font-family="IBM Plex Sans, sans-serif" font-size="12.5" font-weight="600" class="d-irish">IRISH</text>
+          <text x="30" y="240" font-family="IBM Plex Mono, monospace" font-size="11.5" class="d-irish">58.709 · celular</text>
+          <text x="30" y="258" font-family="IBM Plex Mono, monospace" font-size="11" class="d-irish" opacity="0.8">96,2 % del corpus</text>
+
+          <line x1="166" y1="146" x2="220" y2="160" class="d-arrow-campis" marker-end="url(#ar-campis)"></line>
+          <line x1="166" y1="234" x2="220" y2="222" class="d-arrow-irish" marker-end="url(#ar-irish)"></line>
+
+          <!-- particion -->
+          <rect x="226" y="44" width="158" height="312" rx="3" class="d-box"></rect>
+          <text x="242" y="76" font-family="IBM Plex Mono, monospace" font-size="12.5" font-weight="500">manifest.csv</text>
+          <line x1="242" y1="90" x2="368" y2="90" class="d-rule"></line>
+
+          <g font-family="IBM Plex Sans, sans-serif" font-size="11.5" class="d-soft">
+            <text x="242" y="114">Reparte 70 / 15 / 15</text>
+            <text x="242" y="132">estratificado por</text>
+            <text x="242" y="150">fuente y clase.</text>
+
+            <text x="242" y="192">Una sesión de fotos</text>
+            <text x="242" y="210">cae entera en un solo</text>
+            <text x="242" y="228">split, nunca partida.</text>
+
+            <text x="242" y="270">Los duplicados exactos</text>
+            <text x="242" y="288">viajan juntos, unidos</text>
+            <text x="242" y="306">por su SHA-256.</text>
+          </g>
+          <text x="242" y="338" font-family="IBM Plex Mono, monospace" font-size="10.5" class="d-campis">244 sesiones en CAMPIS</text>
+
+          <line x1="384" y1="168" x2="438" y2="110" class="d-arrow" marker-end="url(#ar)"></line>
+          <line x1="384" y1="200" x2="438" y2="200" class="d-arrow" marker-end="url(#ar)"></line>
+          <line x1="384" y1="232" x2="438" y2="292" class="d-arrow" marker-end="url(#ar)"></line>
+
+          <!-- por split -->
+          <rect x="444" y="66" width="180" height="88" rx="3" class="d-box"></rect>
+          <text x="458" y="88" font-family="IBM Plex Sans, sans-serif" font-size="12" font-weight="600">Train · 70 %</text>
+          <g font-family="IBM Plex Mono, monospace" font-size="10.5" class="d-softer">
+            <text x="458" y="108">balance por época</text>
+            <text x="458" y="124">2.000 × 6 = 12.000</text>
+            <text x="458" y="140">375 pasos · 32/lote</text>
+          </g>
+
+          <rect x="444" y="176" width="180" height="88" rx="3" class="d-box"></rect>
+          <text x="458" y="198" font-family="IBM Plex Sans, sans-serif" font-size="12" font-weight="600">Val · 15 %</text>
+          <g font-family="IBM Plex Mono, monospace" font-size="10.5" class="d-softer">
+            <text x="458" y="218">≈9.150 imágenes</text>
+            <text x="458" y="234">distribución natural</text>
+            <text x="458" y="250">val_balanced_loss</text>
+          </g>
+
+          <rect x="444" y="286" width="180" height="88" rx="3" class="d-box"></rect>
+          <text x="458" y="308" font-family="IBM Plex Sans, sans-serif" font-size="12" font-weight="600">Test · 15 %</text>
+          <g font-family="IBM Plex Mono, monospace" font-size="10.5" class="d-softer">
+            <text x="458" y="328">≈9.150 imágenes</text>
+            <text x="458" y="344">se abre una sola vez,</text>
+            <text x="458" y="360">al final</text>
+          </g>
+
+          <line x1="624" y1="110" x2="662" y2="110" class="d-arrow" marker-end="url(#ar)"></line>
+          <line x1="624" y1="220" x2="662" y2="220" class="d-arrow" marker-end="url(#ar)"></line>
+          <line x1="624" y1="330" x2="662" y2="330" class="d-arrow" marker-end="url(#ar)"></line>
+
+          <!-- modelo -->
+          <rect x="668" y="44" width="216" height="330" rx="3" class="d-box-accent"></rect>
+          <text x="684" y="76" font-family="IBM Plex Sans, sans-serif" font-size="13" font-weight="600" class="d-accent">MobileNetV3Small</text>
+          <line x1="684" y1="90" x2="868" y2="90" class="d-rule-accent"></line>
+
+          <g font-family="IBM Plex Sans, sans-serif" font-size="11.5" class="d-soft">
+            <text x="684" y="114">Lo entrena: cabeza</text>
+            <text x="684" y="132">congelada, luego el</text>
+            <text x="684" y="150">30 % final del backbone.</text>
+
+            <text x="684" y="224">Elige su checkpoint,</text>
+            <text x="684" y="242">promediando las dos</text>
+            <text x="684" y="260">cámaras por igual.</text>
+
+            <text x="684" y="334">Lo mide, reportando</text>
+            <text x="684" y="352">cada cámara aparte.</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption>
+        Las dos cámaras entran por separado y siguen siendo distinguibles en todo el recorrido.
+        El mismo modelo recibe las tres particiones en tres papeles distintos: train lo entrena,
+        val decide cuál de sus versiones se guarda, y test solo lo mide.
+      </figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">El corpus</p>
+      <h2>Qué hay realmente en <code>datasets/</code></h2>
+      <p class="prose">
+        Las dos fuentes no solo difieren en cantidad. CAMPIS son fotos cuadradas de hasta
+        4000 × 4000 px; Irish son 4:3 de alrededor de 1000 px. Por eso el preprocesamiento
+        recorta el cuadrado central antes de redimensionar: sin ese recorte, solo Irish se
+        deformaría y la proporción de la imagen delataría de qué cámara vino.
+      </p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Fuente</th>
+            <th scope="col">Early blight</th>
+            <th scope="col">Healthy</th>
+            <th scope="col">Late blight</th>
+            <th scope="col">Total</th>
+            <th scope="col">Del corpus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">
+              <span class="dom"><i class="swatch sw-campis"></i> <b>CAMPIS</b> <span>cámara profesional</span></span>
+            </th>
+            <td>966</td><td>470</td><td>876</td><td>2.312</td><td>3,8 %</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <span class="dom"><i class="swatch sw-irish"></i> <b>Irish</b> <span>cámara de celular</span></span>
+            </th>
+            <td>17.772</td><td>20.438</td><td>20.499</td><td>58.709</td><td>96,2 %</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Total</td><td>18.738</td><td>20.908</td><td>21.375</td><td>61.021</td><td>100 %</td></tr>
+        </tfoot>
+      </table>
+    </div>
+    <p class="prose" style="font-size:0.92rem;color:var(--muted)">
+      Conteos leídos del disco. Todos los archivos son JPG y suman unos 9,3 GB. El reporte de
+      auditoría guardado en <code>artifacts/reports/</code> quedó desactualizado: registra 61.019
+      imágenes porque dos archivos entraron después, y además se generó con <code>--quick</code>,
+      sin abrir ni hashear nada.
+    </p>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">Las siete etapas</p>
+      <h2>Qué hace cada paso, y de qué te protege</h2>
+      <p class="prose">
+        El orden importa: cada etapa asume que la anterior ya se ejecutó. Las tres primeras
+        deciden qué datos ve el modelo, y son las que más influyen en si las métricas finales
+        significan algo.
+      </p>
+    </div>
+
+    <div class="stages">
+
+      <article class="stage">
+        <div class="stage-n">01</div>
+        <div class="stage-body">
+          <h3>Auditoría <span class="cmd">run.py audit</span></h3>
+          <p>
+            Abre cada imagen, la verifica y calcula su SHA-256. Encuentra archivos corruptos,
+            duplicados exactos y —lo más peligroso— contenido idéntico guardado bajo dos
+            etiquetas distintas. Es un chequeo: no modifica nada y no aborta al primer problema,
+            los lista todos.
+          </p>
+          <p class="io"><b>lee</b> datasets/ <span>→</span> <b>escribe</b> reports/dataset_audit.json</p>
+        </div>
+      </article>
+
+      <article class="stage">
+        <div class="stage-n">02</div>
+        <div class="stage-body">
+          <h3>Catálogo y partición <span class="cmd">run.py prepare</span></h3>
+          <p>
+            Construye el manifest y reparte 70 / 15 / 15. La regla que sostiene todo lo demás:
+            las fotos de una misma sesión caen juntas en un solo split. Una sesión se reconoce
+            por la marca temporal del nombre, por marcas epoch, o por corridas del contador de
+            la cámara (<code>IMG_0051</code>, <code>IMG_0052</code>, <code>IMG_0054</code>).
+            Sin esa última regla, 1.202 de las 2.312 fotos CAMPIS quedaban sueltas y podían
+            repartirse entre train y test, inflando el resultado.
+          </p>
+          <p class="io"><b>lee</b> datasets/ <span>→</span> <b>escribe</b> manifests/dataset.csv</p>
+          <span class="fixed">corregido · 1.408 → 244 sesiones</span>
+        </div>
+      </article>
+
+      <article class="stage">
+        <div class="stage-n">03</div>
+        <div class="stage-body">
+          <h3>Entrada de datos <span class="cmd">tf.data</span></h3>
+          <p>
+            Cada imagen se decodifica, se endereza según su orientación EXIF, se recorta al
+            cuadrado central y se redimensiona a 224 × 224. Sale como RGB <code>float32</code>
+            en rango 0–255; la normalización de MobileNetV3 vive dentro del modelo, así que
+            entrenamiento, Keras y TFLite comparten exactamente el mismo preprocesamiento.
+          </p>
+          <p>
+            El balance se resuelve aquí, no antes: cada combinación fuente × clase se baraja y
+            se repite por separado, y la época se arma en turnos entre los seis grupos. Cada
+            época tiene 2.000 referencias de cada grupo, pero Irish aporta imágenes
+            <em>distintas</em> en cada vuelta hasta recorrer sus ~41.100 de train.
+          </p>
+          <p class="io"><b>lee</b> manifest + imágenes <span>→</span> <b>entrega</b> lotes de 32</p>
+          <span class="fixed">corregido · remuestrea cada época</span>
+        </div>
+      </article>
+
+      <article class="stage">
+        <div class="stage-n">04</div>
+        <div class="stage-body">
+          <h3>Modelo</h3>
+          <p>
+            MobileNetV3Small con pesos de ImageNet, sin su clasificador original. Encima:
+            pooling promedio, dos capas densas de 256 y 128 con dropout de 0,30, y una salida
+            softmax de tres clases. Las capas de aumento —volteo, rotación, traslación, zoom y
+            contraste— viven dentro del modelo y solo actúan en entrenamiento; en inferencia
+            son transparentes.
+          </p>
+          <p class="io"><b>entrada</b> 224 × 224 × 3 <span>→</span> <b>salida</b> 3 probabilidades</p>
+        </div>
+      </article>
+
+      <article class="stage">
+        <div class="stage-n">05</div>
+        <div class="stage-body">
+          <h3>Entrenamiento en dos fases <span class="cmd">run.py train</span></h3>
+          <p>
+            Primero 10 épocas con el backbone congelado y learning rate 1e-3: solo aprende la
+            cabeza. Después 10 épocas descongelando el 30 % final del backbone con 1e-5, mucho
+            más suave. Las capas de BatchNormalization permanecen congeladas todo el tiempo.
+            Si el fine-tuning no mejora, el modelo final vuelve solo al checkpoint de la
+            primera fase.
+          </p>
+          <p>
+            Cada época se mide la validación una vez y se reporta por cámara. El checkpoint y
+            el early stopping siguen <code>val_balanced_loss</code>, el promedio simple entre
+            dominios — si siguieran la pérdida global, Irish decidiría por ser el 96 %.
+          </p>
+          <p class="io"><b>vigila</b> val_balanced_loss <span>·</span> <b>paciencia</b> 5 épocas</p>
+          <span class="fixed">corregido · selección balanceada</span>
+        </div>
+      </article>
+
+      <article class="stage">
+        <div class="stage-n">06</div>
+        <div class="stage-body">
+          <h3>Evaluación <span class="cmd">run.py evaluate</span></h3>
+          <p>
+            Predice el test conservando el orden del manifest, para que cada predicción quede
+            alineada con su archivo. Calcula accuracy, F1 macro y matriz de confusión tres
+            veces: global, solo CAMPIS y solo Irish. Esa separación es el resultado que
+            realmente responde si el modelo sirve con una cámara profesional.
+          </p>
+          <p class="io"><b>escribe</b> metrics.json · predicciones · 3 matrices</p>
+        </div>
+      </article>
+
+      <article class="stage">
+        <div class="stage-n">07</div>
+        <div class="stage-body">
+          <h3>Exportación <span class="cmd">run.py export</span></h3>
+          <p>
+            Guarda el modelo Keras y lo convierte a TFLite con cuantización dinámica, junto a
+            las etiquetas en orden y los metadatos del preprocesamiento. Después compara ambos
+            runtimes sobre las mismas imágenes: si las probabilidades no coinciden dentro de la
+            tolerancia, la ejecución falla en vez de entregar un <code>.tflite</code> silenciosamente roto.
+          </p>
+          <p class="io"><b>escribe</b> model.keras · model.tflite · labels · metadata · parity</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">Ejecución</p>
+      <h2>El orden en que se corre</h2>
+      <p class="prose">
+        En este equipo TensorFlow 2.21 no usa GPU: Windows nativo ya no la soporta. Aun así el
+        entrenamiento completo es viable en CPU, porque el balance por época mantiene las
+        épocas en 12.000 imágenes.
+      </p>
+    </div>
+
+    <pre><span class="c"># 1 · verificar el corpus antes de nada — unos 4 minutos</span>
+<span class="p">python</span> run.py audit    --config configs/default.toml
+
+<span class="c"># 2 · construir el manifest y el split — reusa lo anterior</span>
+<span class="p">python</span> run.py prepare  --config configs/default.toml --force
+
+<span class="c"># 3 · entrenar, evaluar y exportar en una sola corrida</span>
+<span class="p">python</span> run.py train    --config configs/default.toml --run-name baseline-mixto
+
+<span class="c"># 4 · predecir una imagen, una carpeta o con el .tflite</span>
+<span class="p">python</span> run.py predict  --config configs/default.toml \
+                       --model artifacts/runs/MI_RUN/model.keras \
+                       --input ruta/a/una_imagen.jpg</pre>
+
+    <div class="notes">
+      <div class="note">
+        <h3>Rendimiento medido</h3>
+        <p>
+          224 img/s entrenando la cabeza, 181 en fine-tuning, 128 en inferencia. La decodificación
+          da 157 img/s en CAMPIS y 817 en Irish. Con eso, cada época ronda los 3 minutos y el
+          entrenamiento completo entre 60 y 80 minutos.
+        </p>
+      </div>
+      <div class="note">
+        <h3>Reproducibilidad</h3>
+        <p>
+          Semilla 42 en todo: split, barajado, inicialización y aumento. Cada corrida guarda su
+          configuración resuelta y su propia copia del manifest, así que un resultado se puede
+          reconstruir sin adivinar con qué parámetros salió.
+        </p>
+      </div>
+      <div class="note">
+        <h3>Antes de dar por buena una corrida</h3>
+        <p>
+          Comparar <code>val_campis_*</code> contra <code>val_irish_*</code> en
+          <code>history.csv</code>. Si la brecha entre las dos cámaras crece época a época, el
+          modelo se está especializando en el celular.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">Resultados</p>
+      <h2>Qué queda guardado de cada ejecución</h2>
+      <p class="prose">
+        Todo aterriza en <code>artifacts/runs/&lt;fecha&gt;-&lt;nombre&gt;/</code>, una carpeta por
+        corrida que se puede archivar entera.
+      </p>
+    </div>
+
+    <dl class="outputs">
+      <dt>config.resolved.json</dt>
+      <dd>Todos los parámetros con los que se corrió, ya con las rutas resueltas.</dd>
+      <dt>manifest.csv</dt>
+      <dd>El split exacto que usó esta corrida, congelado junto a sus resultados.</dd>
+      <dt>history.csv</dt>
+      <dd>Métricas por época, globales y por cámara, de las dos fases.</dd>
+      <dt>best_head.keras<br>best_fine_tune.keras</dt>
+      <dd>El mejor checkpoint de cada fase; <code>model.keras</code> es el que ganó.</dd>
+      <dt>evaluation/</dt>
+      <dd>Métricas, predicciones y las tres matrices de confusión sobre el test.</dd>
+      <dt>model.tflite</dt>
+      <dd>El modelo para móvil, con etiquetas, metadatos y su prueba de paridad.</dd>
+    </dl>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">Honestidad metodológica</p>
+      <h2>Lo que el pipeline todavía no puede garantizar</h2>
+    </div>
+    <div class="notes">
+      <div class="note">
+        <h3>Irish no tiene sesiones</h3>
+        <p>
+          Sus nombres (<code>healthy0</code>, <code>healthy1</code>) son correlativos pero no
+          prueban que dos fotos vengan de la misma planta, así que no se agrupan. Si conoces esa
+          relación, incorporarla como <code>group_id</code> haría el test más estricto.
+        </p>
+      </div>
+      <div class="note">
+        <h3>El test de CAMPIS es pequeño</h3>
+        <p>
+          Unas 347 imágenes de pocas sesiones independientes. Es el número correcto —agrupar
+          bien reduce el tamaño efectivo— pero su intervalo de confianza es amplio y conviene
+          reportarlo así.
+        </p>
+      </div>
+      <div class="note">
+        <h3>SHA-256 solo ve copias idénticas</h3>
+        <p>
+          Un recorte, un reencuadre o una recompresión de la misma foto pasan como imágenes
+          distintas. La detección de sesiones cubre buena parte de eso en CAMPIS, no en Irish.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Resumen del pipeline tal como está en el repositorio, con los conteos leídos del disco y los
+    tiempos medidos en este equipo. La referencia técnica completa vive en el README del proyecto.
+  </footer>
+
+</div>
