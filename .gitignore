@@ -15,8 +15,6 @@ datasets/
 # pesos y el manifest, que son grandes y se regeneran con `prepare`.
 artifacts/manifests/
 artifacts/smoke/
-artifacts/runs/*/*.keras
-artifacts/runs/*/*.tflite
 artifacts/runs/*/manifest.csv
 
 # Archivos del editor y del sistema.
