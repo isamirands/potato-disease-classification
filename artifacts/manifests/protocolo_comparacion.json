@@ -1,0 +1,134 @@
+{
+  "reference_run": "C:\\CAMPIS\\artifacts\\runs\\20260824T043217Z-sin-sesiones",
+  "seed": 42,
+  "policy": {
+    "validation": "idéntica a la referencia",
+    "test": "idéntico a la referencia",
+    "model1_train": "solo fuente campis",
+    "model2_train": "50 % determinista por fuente/clase, grupos indivisibles",
+    "model3_train": "solo fuente Irish completa"
+  },
+  "common_test_signature_sha256": "aabd2b310102deead78f24a233fc5e5c22e8f3f7dc4d04b411be0fc7721767d3",
+  "reference": {
+    "total": 40778,
+    "by_split": {
+      "test": 6115,
+      "train": 28547,
+      "val": 6116
+    },
+    "by_source": {
+      "campis": 2310,
+      "irish": 38468
+    },
+    "by_split_source_class": {
+      "test/campis/early_blight": 145,
+      "test/campis/healthy": 70,
+      "test/campis/late_blight": 131,
+      "test/irish/early_blight": 920,
+      "test/irish/healthy": 2895,
+      "test/irish/late_blight": 1954,
+      "train/campis/early_blight": 676,
+      "train/campis/healthy": 328,
+      "train/campis/late_blight": 614,
+      "train/irish/early_blight": 4296,
+      "train/irish/healthy": 13512,
+      "train/irish/late_blight": 9121,
+      "val/campis/early_blight": 145,
+      "val/campis/healthy": 70,
+      "val/campis/late_blight": 131,
+      "val/irish/early_blight": 921,
+      "val/irish/healthy": 2895,
+      "val/irish/late_blight": 1954
+    }
+  },
+  "model1": {
+    "total": 13849,
+    "by_split": {
+      "test": 6115,
+      "train": 1618,
+      "val": 6116
+    },
+    "by_source": {
+      "campis": 2310,
+      "irish": 11539
+    },
+    "by_split_source_class": {
+      "test/campis/early_blight": 145,
+      "test/campis/healthy": 70,
+      "test/campis/late_blight": 131,
+      "test/irish/early_blight": 920,
+      "test/irish/healthy": 2895,
+      "test/irish/late_blight": 1954,
+      "train/campis/early_blight": 676,
+      "train/campis/healthy": 328,
+      "train/campis/late_blight": 614,
+      "val/campis/early_blight": 145,
+      "val/campis/healthy": 70,
+      "val/campis/late_blight": 131,
+      "val/irish/early_blight": 921,
+      "val/irish/healthy": 2895,
+      "val/irish/late_blight": 1954
+    }
+  },
+  "model2": {
+    "total": 26505,
+    "by_split": {
+      "test": 6115,
+      "train": 14274,
+      "val": 6116
+    },
+    "by_source": {
+      "campis": 1501,
+      "irish": 25004
+    },
+    "by_split_source_class": {
+      "test/campis/early_blight": 145,
+      "test/campis/healthy": 70,
+      "test/campis/late_blight": 131,
+      "test/irish/early_blight": 920,
+      "test/irish/healthy": 2895,
+      "test/irish/late_blight": 1954,
+      "train/campis/early_blight": 338,
+      "train/campis/healthy": 164,
+      "train/campis/late_blight": 307,
+      "train/irish/early_blight": 2148,
+      "train/irish/healthy": 6756,
+      "train/irish/late_blight": 4561,
+      "val/campis/early_blight": 145,
+      "val/campis/healthy": 70,
+      "val/campis/late_blight": 131,
+      "val/irish/early_blight": 921,
+      "val/irish/healthy": 2895,
+      "val/irish/late_blight": 1954
+    }
+  },
+  "model3": {
+    "total": 39160,
+    "by_split": {
+      "test": 6115,
+      "train": 26929,
+      "val": 6116
+    },
+    "by_source": {
+      "campis": 692,
+      "irish": 38468
+    },
+    "by_split_source_class": {
+      "test/campis/early_blight": 145,
+      "test/campis/healthy": 70,
+      "test/campis/late_blight": 131,
+      "test/irish/early_blight": 920,
+      "test/irish/healthy": 2895,
+      "test/irish/late_blight": 1954,
+      "train/irish/early_blight": 4296,
+      "train/irish/healthy": 13512,
+      "train/irish/late_blight": 9121,
+      "val/campis/early_blight": 145,
+      "val/campis/healthy": 70,
+      "val/campis/late_blight": 131,
+      "val/irish/early_blight": 921,
+      "val/irish/healthy": 2895,
+      "val/irish/late_blight": 1954
+    }
+  }
+}

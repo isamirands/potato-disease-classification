@@ -1,0 +1,20 @@
+{
+  "passed": false,
+  "probabilities_close": false,
+  "predicted_classes_match": true,
+  "sample_count": 64,
+  "output_count": 3,
+  "max_absolute_error": 0.14012852311134338,
+  "mean_absolute_error": 0.002608836628496647,
+  "max_relative_error": 0.6391059160232544,
+  "absolute_tolerance": 0.05,
+  "relative_tolerance": 0.05,
+  "mean_absolute_tolerance": 0.01,
+  "percentile_absolute_error": 0.06519041955471039,
+  "error_percentile": 99.0,
+  "relative_floor": 0.01,
+  "class_flips": 0,
+  "unexplained_class_flips": 0,
+  "class_agreement_rate": 1.0,
+  "largest_unexplained_margin": 0.0
+}

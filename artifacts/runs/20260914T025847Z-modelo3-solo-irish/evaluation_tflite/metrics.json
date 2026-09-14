@@ -1,0 +1,209 @@
+{
+  "global": {
+    "samples": 6115,
+    "accuracy": 0.9553556827473426,
+    "macro_f1": 0.9430877828253911,
+    "weighted_f1": 0.9549114588147237,
+    "classification_report": {
+      "early_blight": {
+        "precision": 0.9647812166488794,
+        "recall": 0.8488262910798122,
+        "f1-score": 0.903096903096903,
+        "support": 1065.0
+      },
+      "healthy": {
+        "precision": 0.980054090601758,
+        "recall": 0.9777403035413154,
+        "f1-score": 0.9788958298159717,
+        "support": 2965.0
+      },
+      "late_blight": {
+        "precision": 0.9184684684684684,
+        "recall": 0.9779376498800959,
+        "f1-score": 0.9472706155632985,
+        "support": 2085.0
+      },
+      "accuracy": 0.9553556827473426,
+      "macro avg": {
+        "precision": 0.9544345919063685,
+        "recall": 0.9348347481670745,
+        "f1-score": 0.9430877828253911,
+        "support": 6115.0
+      },
+      "weighted avg": {
+        "precision": 0.9563956060706501,
+        "recall": 0.9553556827473426,
+        "f1-score": 0.9549114588147237,
+        "support": 6115.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        904,
+        46,
+        115
+      ],
+      [
+        0,
+        2899,
+        66
+      ],
+      [
+        33,
+        13,
+        2039
+      ]
+    ]
+  },
+  "by_source": {
+    "campis": {
+      "samples": 346,
+      "accuracy": 0.523121387283237,
+      "macro_f1": 0.4505951302583427,
+      "weighted_f1": 0.4627540669669065,
+      "classification_report": {
+        "early_blight": {
+          "precision": 0.9354838709677419,
+          "recall": 0.2,
+          "f1-score": 0.32954545454545453,
+          "support": 145.0
+        },
+        "healthy": {
+          "precision": 0.38333333333333336,
+          "recall": 0.32857142857142857,
+          "f1-score": 0.35384615384615387,
+          "support": 70.0
+        },
+        "late_blight": {
+          "precision": 0.5058823529411764,
+          "recall": 0.9847328244274809,
+          "f1-score": 0.6683937823834197,
+          "support": 131.0
+        },
+        "accuracy": 0.523121387283237,
+        "macro avg": {
+          "precision": 0.6082331857474172,
+          "recall": 0.5044347509996365,
+          "f1-score": 0.4505951302583427,
+          "support": 346.0
+        },
+        "weighted avg": {
+          "precision": 0.6611245169333816,
+          "recall": 0.523121387283237,
+          "f1-score": 0.4627540669669065,
+          "support": 346.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          29,
+          37,
+          79
+        ],
+        [
+          0,
+          23,
+          47
+        ],
+        [
+          2,
+          0,
+          129
+        ]
+      ]
+    },
+    "irish": {
+      "samples": 5769,
+      "accuracy": 0.9812792511700468,
+      "macro_f1": 0.9753466389259625,
+      "weighted_f1": 0.9812546728304238,
+      "classification_report": {
+        "early_blight": {
+          "precision": 0.9657836644591612,
+          "recall": 0.9510869565217391,
+          "f1-score": 0.9583789704271632,
+          "support": 920.0
+        },
+        "healthy": {
+          "precision": 0.9924085576259489,
+          "recall": 0.9934369602763385,
+          "f1-score": 0.9929224926635595,
+          "support": 2895.0
+        },
+        "late_blight": {
+          "precision": 0.9720101781170484,
+          "recall": 0.977482088024565,
+          "f1-score": 0.974738453687165,
+          "support": 1954.0
+        },
+        "accuracy": 0.9812792511700468,
+        "macro avg": {
+          "precision": 0.9767341334007195,
+          "recall": 0.9740020016075476,
+          "f1-score": 0.9753466389259625,
+          "support": 5769.0
+        },
+        "weighted avg": {
+          "precision": 0.9812535333108447,
+          "recall": 0.9812792511700468,
+          "f1-score": 0.9812546728304238,
+          "support": 5769.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          875,
+          9,
+          36
+        ],
+        [
+          0,
+          2876,
+          19
+        ],
+        [
+          31,
+          13,
+          1910
+        ]
+      ]
+    }
+  },
+  "runtime": {
+    "engine": "TensorFlow Lite Interpreter",
+    "host_note": "Referencia en CPU del equipo de entrenamiento; no es latencia de teléfono.",
+    "threads": 1,
+    "warmup_samples": 1,
+    "inference_seconds": 84.65349340147804,
+    "wall_seconds_including_decode": 87.34736319992226,
+    "mean_inference_ms_per_image": 13.843580278246614,
+    "images_per_second": 72.23564857505612,
+    "model_bytes": 1332968,
+    "model_sha256": "08cd892c87b0e8b45e78de810c8c6716152e690d03cf860570219565babb85c1",
+    "input_dtype": "float32",
+    "output_dtype": "float32",
+    "input_shape": [
+      -1,
+      224,
+      224,
+      3
+    ]
+  },
+  "keras_tflite_agreement": {
+    "samples": 6115,
+    "class_agreement_rate": 0.9885527391659853,
+    "class_flips": 70,
+    "by_source": {
+      "campis": {
+        "samples": 346,
+        "class_flips": 23,
+        "class_flip_rate": 0.06647398843930635
+      },
+      "irish": {
+        "samples": 5769,
+        "class_flips": 47,
+        "class_flip_rate": 0.008146992546368522
+      }
+    }
+  }
+}
