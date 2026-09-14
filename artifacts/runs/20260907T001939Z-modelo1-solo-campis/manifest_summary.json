@@ -1,0 +1,34 @@
+{
+  "total": 13849,
+  "by_split": {
+    "test": 6115,
+    "train": 1618,
+    "val": 6116
+  },
+  "by_source": {
+    "campis": 2310,
+    "irish": 11539
+  },
+  "by_class": {
+    "early_blight": 2807,
+    "healthy": 6258,
+    "late_blight": 4784
+  },
+  "by_source_class_split": {
+    "campis|early_blight|test": 145,
+    "campis|early_blight|train": 676,
+    "campis|early_blight|val": 145,
+    "campis|healthy|test": 70,
+    "campis|healthy|train": 328,
+    "campis|healthy|val": 70,
+    "campis|late_blight|test": 131,
+    "campis|late_blight|train": 614,
+    "campis|late_blight|val": 131,
+    "irish|early_blight|test": 920,
+    "irish|early_blight|val": 921,
+    "irish|healthy|test": 2895,
+    "irish|healthy|val": 2895,
+    "irish|late_blight|test": 1954,
+    "irish|late_blight|val": 1954
+  }
+}

@@ -509,14 +509,29 @@ def validate_manifest(
             )
 
 
-def write_manifest(records: Sequence[ImageRecord], path: str | Path) -> Path:
-    validate_manifest(records)
+def write_manifest(
+    records: Sequence[ImageRecord],
+    path: str | Path,
+    *,
+    require_all_splits: bool = True,
+) -> Path:
+    """Escribe un manifest; permite corpus de entrenamiento sin un dominio.
+
+    La opción relajada sigue comprobando rutas únicas, etiquetas, hashes y que
+    ningún grupo cruce particiones. Solo deja de exigir que cada combinación
+    fuente/clase aparezca simultáneamente en train, val y test, algo necesario
+    para experimentos explícitos de transferencia entre dominios.
+    """
+
+    validate_manifest(records, require_all_splits=require_all_splits)
     return atomic_write_csv(
         path, (record.to_row() for record in records), fieldnames=MANIFEST_FIELDS
     )
 
 
-def read_manifest_file(path: str | Path) -> list[ImageRecord]:
+def read_manifest_file(
+    path: str | Path, *, require_all_splits: bool = True
+) -> list[ImageRecord]:
     rows = read_csv(path)
     # `orientation` se añadió en v1.0; manifests previos se interpretan como 1.
     required_fields = set(MANIFEST_FIELDS) - {"orientation"}
@@ -543,7 +558,7 @@ def read_manifest_file(path: str | Path) -> list[ImageRecord]:
         ]
     except (KeyError, TypeError, ValueError) as error:
         raise ValueError(f"Manifest inválido en {path}: {error}") from error
-    validate_manifest(records)
+    validate_manifest(records, require_all_splits=require_all_splits)
     return records
 
 

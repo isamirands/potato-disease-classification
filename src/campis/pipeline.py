@@ -101,7 +101,12 @@ def load_or_prepare_manifest(
     force_prepare: bool = False,
 ) -> list[ImageRecord]:
     if config.paths.manifest_path.is_file() and not force_prepare:
-        records = read_manifest_file(config.paths.manifest_path)
+        # Un manifest experimental puede omitir una fuente solamente de train
+        # y conservarla como dominio externo en val/test. Las garantías contra
+        # duplicados y fugas entre particiones siguen activas.
+        records = read_manifest_file(
+            config.paths.manifest_path, require_all_splits=False
+        )
         if config.data.hash_duplicates and any(not record.sha256 for record in records):
             LOGGER.warning(
                 "El manifest existente no contiene hashes aunque hash_duplicates=true; "
@@ -109,7 +114,7 @@ def load_or_prepare_manifest(
             )
     else:
         records, _ = prepare_manifest(config)
-    validate_manifest(records)
+    validate_manifest(records, require_all_splits=False)
     _validate_against_config(records, config)
     return records
 
@@ -236,7 +241,7 @@ def train_pipeline(
     run_dir = create_run_dir(config.paths.artifacts_dir, name=run_name)
     atomic_write_json(run_dir / "config.resolved.json", asdict(config))
     atomic_write_json(run_dir / "manifest_summary.json", manifest_counts(records))
-    write_manifest(records, run_dir / "manifest.csv")
+    write_manifest(records, run_dir / "manifest.csv", require_all_splits=False)
     save_labels_json(run_dir / "labels.json", config.data.classes)
 
     (
@@ -421,8 +426,10 @@ def evaluate_existing_model(
 ) -> dict[str, Any]:
     import tensorflow as tf
 
-    records = read_manifest_file(config.paths.manifest_path)
-    validate_manifest(records)
+    records = read_manifest_file(
+        config.paths.manifest_path, require_all_splits=False
+    )
+    validate_manifest(records, require_all_splits=False)
     _validate_against_config(records, config)
     selected = records_for_split(records, split)
     dataset = build_tf_dataset(
