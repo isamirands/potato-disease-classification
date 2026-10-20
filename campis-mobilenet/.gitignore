@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+data/raw/
+data/processed/
+data/manifests/*.csv
+artifacts/checkpoints/*.pt
+artifacts/exports/*.onnx
+artifacts/reports/*.png
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/manifests/.gitkeep
+!data/external_test/peru/.gitkeep
+!artifacts/checkpoints/.gitkeep
+!artifacts/exports/.gitkeep
+!artifacts/reports/.gitkeep

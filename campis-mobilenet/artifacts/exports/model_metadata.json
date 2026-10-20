@@ -1,0 +1,7 @@
+{
+  "model_version": "1.0.0",
+  "architecture": "MobileNetV3-Large shared backbone, crop-specific head",
+  "format": "One ONNX graph per manually selected crop",
+  "input": "float32 [1,3,224,224] RGB normalized with ImageNet statistics",
+  "outputs": "logits for the selected crop classes"
+}

@@ -1,0 +1,16 @@
+{
+  "labels": [
+    "healthy",
+    "coffee_leaf_rust"
+  ],
+  "matrix": [
+    [
+      108,
+      5
+    ],
+    [
+      14,
+      86
+    ]
+  ]
+}

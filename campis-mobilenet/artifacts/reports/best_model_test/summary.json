@@ -1,0 +1,38 @@
+{
+  "tomato": {
+    "accuracy": 0.9873217115689382,
+    "precision_macro": 0.9884893788553943,
+    "recall_macro": 0.9871213409136906,
+    "f1_macro": 0.987656044896654,
+    "samples": 1262
+  },
+  "maize": {
+    "accuracy": 0.9878892733564014,
+    "precision_macro": 0.9861771561771562,
+    "recall_macro": 0.9794384057971015,
+    "f1_macro": 0.9824819194122374,
+    "samples": 578
+  },
+  "coffee": {
+    "accuracy": 0.9107981220657277,
+    "precision_macro": 0.9151504233471446,
+    "recall_macro": 0.9078761061946903,
+    "f1_macro": 0.9098362481898183,
+    "samples": 213
+  },
+  "banana": {
+    "accuracy": 0.9915014164305949,
+    "precision_macro": 0.9923881428306207,
+    "recall_macro": 0.9918046289432502,
+    "f1_macro": 0.9920859417265632,
+    "samples": 353
+  },
+  "rice": {
+    "accuracy": 0.9865047233468286,
+    "precision_macro": 0.9839938683693248,
+    "recall_macro": 0.9837605176513626,
+    "f1_macro": 0.9838354534303189,
+    "samples": 741
+  },
+  "macro_f1_mean_across_crops": 0.9711791215311184
+}

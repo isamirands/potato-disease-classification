@@ -1,0 +1,22 @@
+seed: 42
+raw_dir: data/raw
+processed_dir: data/processed
+manifest_path: data/manifests/manifest.csv
+sources:
+  plantvillage:
+    version: github-spMohanty-PlantVillage-Dataset
+    url: https://github.com/spMohanty/PlantVillage-Dataset
+    country: null
+  rocole:
+    version: "2"
+    url: https://data.mendeley.com/datasets/c5yvn32dzg/2
+    country: null
+    manual_download: true
+  banana:
+    url: https://data.mendeley.com/datasets/hzttvh774g
+    country: Peru
+    manual_download: true
+  paddy_doctor:
+    url: https://github.com/paddydoc/paddy-doctor-dataset
+    country: Bangladesh
+    manual_download: true

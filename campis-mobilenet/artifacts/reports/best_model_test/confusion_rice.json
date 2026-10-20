@@ -1,0 +1,34 @@
+{
+  "labels": [
+    "healthy",
+    "blast",
+    "brown_spot",
+    "bacterial_leaf_blight"
+  ],
+  "matrix": [
+    [
+      242,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      275,
+      2,
+      2
+    ],
+    [
+      3,
+      0,
+      139,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      75
+    ]
+  ]
+}

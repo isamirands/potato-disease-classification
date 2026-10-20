@@ -1,0 +1,16 @@
+crops:
+  tomato:
+    display_name: Tomate
+    classes: [healthy, early_blight, late_blight, bacterial_spot, septoria_leaf_spot]
+  maize:
+    display_name: Maíz
+    classes: [healthy, common_rust, northern_leaf_blight, gray_leaf_spot]
+  coffee:
+    display_name: Café
+    classes: [healthy, coffee_leaf_rust]
+  banana:
+    display_name: Plátano
+    classes: [healthy, sigatoka, cordana]
+  rice:
+    display_name: Arroz
+    classes: [healthy, blast, brown_spot, bacterial_leaf_blight]

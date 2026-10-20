@@ -1,0 +1,34 @@
+{
+  "labels": [
+    "healthy",
+    "common_rust",
+    "northern_leaf_blight",
+    "gray_leaf_spot"
+  ],
+  "matrix": [
+    [
+      192,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      168,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      137,
+      1
+    ],
+    [
+      0,
+      0,
+      6,
+      74
+    ]
+  ]
+}

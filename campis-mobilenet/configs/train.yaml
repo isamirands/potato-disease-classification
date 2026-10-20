@@ -1,0 +1,17 @@
+seed: 42
+image_size: 224
+batch_size: 32
+# Windows workers require every transform and dataset dependency to be picklable.
+# Keep 0 as the portable default; increase only after a platform-specific test.
+num_workers: 0
+log_interval: 25
+mixed_precision: true
+gradient_clip_norm: 1.0
+device: auto
+monitor_metric: macro_f1_mean_across_crops
+crop_config: configs/crops.yaml
+manifest_path: data/manifests/manifest.csv
+output_dir: artifacts/checkpoints
+crop_probabilities: {}
+stage_a: {epochs: 10, learning_rate: 0.001, weight_decay: 0.0001}
+stage_b: {epochs: 30, backbone_learning_rate: 0.00001, head_learning_rate: 0.0001, weight_decay: 0.0001, early_stopping_patience: 7}
